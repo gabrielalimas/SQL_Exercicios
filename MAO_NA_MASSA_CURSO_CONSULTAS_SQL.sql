@@ -1,0 +1,45 @@
+-- MÃO NA MASSA: GERENCIAMENTO ESCOLAR COM BANCO DE DADOS RELACIONAL --
+-- PARA DESENVOLVER ESSE DESAFIO, USE O BANCO DE DADOS CRIADO NO PROJETO FINAL DO CURSO ANTERIOR, O BANCO DE DADOS ESCOLAR --
+-- VAMOS CONSIDERAR ALGUMAS CONSULTAS TÍPICAS QUE PODEM SER REALIZADAS EM UM SISTEMA DE GERENCIAMENTO ESCOLAR. --
+
+-- CONSULTA 1: RETORNAR A MÉDIA DE NOTAS DOS ALUNOS EM HISTÓRIA. --
+
+-- ABAIXO, ESTOU VERIFICANDO QUAL É O ID DA MATÉRIA DE HISTÓRIA NA TABELA --
+SELECT id_disciplina 
+FROM disciplinas 
+WHERE nome_disciplina = 'História'; -- VERIFICANDO QUAL É O ID DA MATÉRIA DE HISTÓRIA NA TABELA --
+
+SELECT AVG(nota)
+FROM Notas
+WHERE id_disciplina = 2;
+
+-- CONSULTA 2: RETORNAR AS INFORMAÇÕES DOS ALUNOS CUJO NOME COMEÇA COM 'A'. --
+SELECT * FROM alunos
+WHERE nome_aluno like 'A%';
+
+-- CONSULTA 3: BUSCAR APENAS OS ALUNOS QUE FAZEM ANIVERSÁRIO EM FEVEREIRO. --
+SELECT * FROM alunos
+WHERE data_nascimento LIKE '%-02-%';
+
+-- OU --
+SELECT * FROM Alunos
+WHERE STRFTIME('%m', data_nascimento) = '02';
+
+-- CONSULTA 4: REALIZAR UMA CONSULTA QUE CALCULA A IDADE DOS ALUNOS. --
+SELECT nome_aluno, data_nascimento, FLOOR((JULIANDAY('now') - JULIANDAY(data_nascimento)) / 365) AS idade_atual
+FROM alunos;
+
+-- OU --
+SELECT nome_aluno,
+      data_nascimento,
+      (strftime('%Y', CURRENT_DATE) - strftime('%Y', data_nascimento)) - 
+      (strftime('%m-%d', CURRENT_DATE) < strftime('%m-%d', data_nascimento)) AS idade
+FROM Alunos;
+
+-- CONSULTA 5: RETORNAR SE O ALUNO ESTÁ OU NÃO APROVADO. ALUNO É CONSIDERADO APROVADO SE A SUA NOTA FOI IGUAL OU MAIOR QUE 6. --
+SELECT id_aluno, id_disciplina, nota,
+CASE
+WHEN nota >= 6 THEN 'Aprovado(a)'
+ELSE 'Reprovado(a)'
+end as Resultado_Final
+from Notas;
