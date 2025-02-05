@@ -193,12 +193,12 @@ total_do_pedido_gold,
 cliente_gold,
 data_de_envio_estimada_gold)
 SELECT
-id,
-data_do_pedido,
-status,
-total_do_pedido,
-cliente,
-data_de_envio_estimada
+  id,
+  data_do_pedido,
+  status,
+  total_do_pedido,
+  cliente,
+  data_de_envio_estimada
 FROM tabelapedidos
 WHERE total_do_pedido >= 400;
 
@@ -355,48 +355,48 @@ CREATE TABLE projetos (
   
   -- CRIACAO TABELA ALUNOS --
   CREATE TABLE alunos (   
-  ID_Aluno INT PRIMARY KEY,   
-  Nome_Aluno VARCHAR (200),   
-  Data_Nascimento INT,
-  Genero VARCHAR (15),
-  Endereco VARCHAR (200),
-  Telefone_Contato VARCHAR (20),
-  Email VARCHAR (250)
+    ID_Aluno INT PRIMARY KEY,   
+    Nome_Aluno VARCHAR (200),   
+    Data_Nascimento INT,
+    Genero VARCHAR (15),
+    Endereco VARCHAR (200),
+    Telefone_Contato VARCHAR (20),
+    Email VARCHAR (250)
   );
   
   -- CRIACAO TABELA PROFESSORES -- 
   CREATE TABLE professores (
-  ID_Professor INT PRIMARY KEY,   
-  Nome_Professor VARCHAR (200),   
-  Data_Nascimento INT,
-  Genero VARCHAR (15),
-  Telefone_Contato VARCHAR (20),
-  Email VARCHAR (250)
+    ID_Professor INT PRIMARY KEY,   
+    Nome_Professor VARCHAR (200),   
+    Data_Nascimento INT,
+    Genero VARCHAR (15),
+    Telefone_Contato VARCHAR (20),
+    Email VARCHAR (250)
   );
   
   -- CRIACAO TABELA DISCIPLINAS -- 
   CREATE TABLE disciplinas (
-  ID_Disciplina INT PRIMARY KEY,   
-  Nome_Disciplina VARCHAR (200),   
-  Descricao TEXT,
-  Carga_Horaria INT,
-  Id_Professor INT,
+    ID_Disciplina INT PRIMARY KEY,   
+    Nome_Disciplina VARCHAR (200),   
+    Descricao TEXT,
+    Carga_Horaria INT,
+    Id_Professor INT,
   FOREIGN KEY (ID_Professor) REFERENCES professores(id_professor)
   );
   
   -- CRIACAO TABELA TURMAS -- 
   CREATE TABLE turmas (
-  ID_Turma INT PRIMARY KEY,   
-  Nome_Turma VARCHAR (200),   
-  Ano_Letivo INT,
-  ID_Professor_Orientador INT,
+    ID_Turma INT PRIMARY KEY,   
+    Nome_Turma VARCHAR (200),   
+    Ano_Letivo INT,
+    ID_Professor_Orientador INT,
   FOREIGN KEY (ID_Professor_Orientador) REFERENCES professores(id_professor)
   );
 
  -- CRIACAO  TABELA TURMA DISCIPLINAS -- 
  CREATE TABLE turma_disciplinas (
- ID_Turma INT,
- ID_Disciplina INT,
+   ID_Turma INT,
+   ID_Disciplina INT,
  PRIMARY KEY (id_turma, id_disciplina),
  FOREIGN KEY (id_turma) REFERENCES turmas(id_turma),
  FOREIGN KEY (id_disciplina) REFERENCES disciplinas(id_disciplina)
@@ -404,8 +404,8 @@ CREATE TABLE projetos (
   
  -- CRIACAO TABELA TURMA ALUNOS -- 
  CREATE TABLE Turma_Alunos (
- id_turma INT,
- id_aluno INT,
+   id_turma INT,
+   id_aluno INT,
  PRIMARY KEY (id_turma, id_aluno),
  FOREIGN KEY (id_turma) REFERENCES turmas(id_turma),
  FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno)
@@ -413,11 +413,11 @@ CREATE TABLE projetos (
 
 -- CRIANDO A TABELA NOTAS -- 
 CREATE TABLE Notas (
-ID_Nota INT PRIMARY KEY,
-ID_Aluno INT,
-ID_Disciplina INT,
-Nota DECIMAL(5, 2),
-Data_Avaliacao DATE,
+  ID_Nota INT PRIMARY KEY,
+  ID_Aluno INT,
+  ID_Disciplina INT,
+  Nota DECIMAL(5, 2),
+  Data_Avaliacao DATE,
 FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno),
 FOREIGN KEY (id_disciplina) REFERENCES disciplinas(id_disciplina)
 );
