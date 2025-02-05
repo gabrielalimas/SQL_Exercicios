@@ -39,7 +39,7 @@ FROM Alunos;
 -- CONSULTA 5: RETORNAR SE O ALUNO ESTÁ OU NÃO APROVADO. ALUNO É CONSIDERADO APROVADO SE A SUA NOTA FOI IGUAL OU MAIOR QUE 6. --
 SELECT id_aluno, id_disciplina, nota,
 CASE
-WHEN nota >= 6 THEN 'Aprovado(a)'
-ELSE 'Reprovado(a)'
-end as Resultado_Final
+      WHEN nota >= 6 THEN 'Aprovado(a)'
+      ELSE 'Reprovado(a)'
+      END AS Resultado_Final
 from Notas;
