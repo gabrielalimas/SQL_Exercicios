@@ -162,10 +162,10 @@ SELECT ('O faturamento bruto médio foi ' || CAST(ROUND (AVG(faturamento_bruto),
 -- AQUI, PRECISAMOS SEPARAR OS SALÁRIOS DOS COLABORADORES PELA FAIXA SALARIAL, PARA SE TER UMA MÉDIA SALARIAL POR TIPO DE PROFISSÃO --
 SELECT id_colaborador, cargo, salario,
 CASE
-WHEN salario < 3000 THEN 'Baixo'
-WHEN salario BETWEEN 3000 AND 6000 THEN 'Médio'
-else 'Alto'
-END as categoria_salario
+  WHEN salario < 3000 THEN 'Baixo'
+  WHEN salario BETWEEN 3000 AND 6000 THEN 'Médio'
+  ELSE 'Alto'
+  END as categoria_salario
 from HistoricoEmprego;
 
 -- RENOMEANDO COM A CLAUSULA RENAME --
